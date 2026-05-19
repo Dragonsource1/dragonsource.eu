@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DragonSource — QR Code</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  background: #1c1108;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  padding: 2rem;
+}
+.card {
+  background: #221408;
+  border: 0.5px solid #C8960C44;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 0 60px #C8170A22;
+  position: relative;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #E8A010, #C8170A, #E8A010, transparent);
+  border-radius: 16px 16px 0 0;
+}
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #E8A010;
+  letter-spacing: 4px;
+  margin-bottom: 4px;
+}
+.title span { color: #C8170A; }
+.tagline {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #C8960C88;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.qr-wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 30px #C8170A33;
+}
+#qrcode canvas, #qrcode img {
+  display: block;
+}
+.scan-text {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #C8960C88;
+  margin-bottom: 0.5rem;
+}
+.url {
+  font-size: 13px;
+  color: #E8A010;
+  font-weight: 500;
+}
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C8960C, transparent);
+  margin: 1.2rem auto;
+}
+.char {
+  font-size: 28px;
+  color: #C8170A44;
+  font-family: serif;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="title">DRAGON<span>SOURCE</span></div>
+  <div class="tagline">Sourcing & Trading — Chine · Europe</div>
+  <div class="qr-wrapper">
+    <div id="qrcode"></div>
+  </div>
+  <div class="scan-text">Scanner pour me contacter</div>
+  <div class="url">dragonsource.eu/carte.html</div>
+  <div class="divider"></div>
+  <div class="char">龍</div>
+</div>
+
+<script>
+new QRCode(document.getElementById("qrcode"), {
+  text: "https://dragonsource.eu/carte.html",
+  width: 200,
+  height: 200,
+  colorDark: "#1c1108",
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.H
+});
+</script>
+</body>
+</html>
