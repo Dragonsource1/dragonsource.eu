@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DragonSource — Sourcing & Trading Chine · Europe</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8170A;
+  --red-dark: #8B0000;
+  --gold: #E8A010;
+  --gold-dim: #C8960C;
+  --gold-faint: #C8960C22;
+  --bg: #1c1108;
+  --bg2: #241608;
+  --bg3: #2c1c0a;
+  --text: #f0ddb0;
+  --text-dim: #a07840;
+  --text-faint: #604820;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* NOISE TEXTURE */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #080300ee, transparent);
+  backdrop-filter: blur(2px);
+}
+
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--red); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #C8170A18 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-glow-gold {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #E8A01008 0%, transparent 70%);
+  top: 30%; left: 60%;
+  pointer-events: none;
+}
+
+.hero-char {
+  font-family: 'Cinzel', serif;
+  font-size: 180px;
+  color: #C8170A08;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.hero-badge {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  border: 0.5px solid var(--gold-faint);
+  padding: 6px 20px;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(32px, 7vw, 90px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 4px;
+  color: var(--gold);
+  animation: fadeUp 0.8s 0.1s ease both;
+  white-space: nowrap;
+}
+
+.hero h1 span { color: var(--red); }
+
+.hero-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  margin: 1.5rem auto;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero p {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 520px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--gold);
+  border: none;
+  padding: 14px 36px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover { background: #a01008; transform: translateY(-2px); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--gold-dim);
+  border: 0.5px solid var(--gold-faint);
+  padding: 14px 36px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover { border-color: var(--gold-dim); color: var(--gold); transform: translateY(-2px); }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: fadeUp 1s 0.8s ease both;
+}
+
+.scroll-hint span {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* SECTIONS */
+section {
+  padding: 6rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  margin-bottom: 2.5rem;
+}
+
+/* SERVICES */
+#services { background: var(--bg2); max-width: 100%; padding: 6rem 0; }
+#services .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5px;
+  background: var(--gold-faint);
+  border: 0.5px solid var(--gold-faint);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: var(--bg2);
+  padding: 2.5rem 2rem;
+  transition: background 0.3s;
+  position: relative;
+}
+
+.service-card:hover { background: var(--bg3); }
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(to bottom, var(--red), var(--gold));
+  transition: height 0.4s ease;
+}
+
+.service-card:hover::before { height: 100%; }
+
+.service-icon {
+  font-size: 32px;
+  margin-bottom: 1.2rem;
+}
+
+.service-title {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.service-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* POURQUOI */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.why-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.why-number {
+  font-family: 'Cinzel', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: #C8170A18;
+  line-height: 1;
+}
+
+.why-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.why-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 300;
+}
+
+/* PRODUITS */
+#produits { background: var(--bg2); max-width: 100%; padding: 6rem 0; }
+#produits .inner { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+.produits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.produit-card {
+  border: 0.5px solid var(--gold-faint);
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.produit-card:hover {
+  border-color: #C8960C66;
+  transform: translateY(-4px);
+}
+
+.produit-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), var(--gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.produit-card:hover::after { transform: scaleX(1); }
+
+.produit-emoji { font-size: 40px; margin-bottom: 1rem; }
+
+.produit-title {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
+.produit-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 300;
+}
+
+/* CONTACT */
+#contact .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.contact-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border: 0.5px solid var(--gold-faint);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.contact-item:hover {
+  border-color: #C8960C55;
+  background: #C8960C06;
+}
+
+.contact-item-icon {
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+}
+
+.contact-item-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 2px;
+}
+
+.contact-item-value {
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.contact-tagline {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--gold);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.contact-tagline span { color: var(--red); }
+
+.contact-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-weight: 300;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* FOOTER */
+footer {
+  border-top: 0.5px solid var(--gold-faint);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--gold);
+}
+
+.footer-logo span { color: var(--red); }
+
+.footer-copy {
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+}
+
+.footer-char {
+  font-size: 24px;
+  color: #C8170A44;
+  font-family: serif;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .produits-grid { grid-template-columns: 1fr; }
+  #contact .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  .hero-char { font-size: 100px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">DRAGON<span>SOURCE</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pourquoi">Pourquoi nous</a></li>
+    <li><a href="#produits">Produits</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-gold"></div>
+  <div class="hero-char">龍</div>
+  <div class="hero-badge">Chine · Europe · Monde</div>
+  <h1>DRAGON<span>SOURCE</span></h1>
+  <div class="hero-line"></div>
+  <p>Votre partenaire de confiance pour le sourcing et le trading direct depuis la Chine vers l'Europe. Produits premium, prix fabricant.</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Nous contacter</a>
+    <a href="#services" class="btn-secondary">Nos services</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Découvrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services">
+  <div class="inner">
+    <div class="reveal">
+      <div class="section-label">Ce que nous faisons</div>
+      <div class="section-title">Nos Services</div>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">🔍</div>
+        <div class="service-title">Sourcing</div>
+        <div class="service-desc">Nous trouvons les meilleurs fournisseurs chinois pour votre besoin. Négociation directe en usine, échantillons, contrôle qualité. Vous payez uniquement une commission.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <div class="service-title">Trading</div>
+        <div class="service-desc">Nous achetons les produits en Chine et vous les livrons en Europe. Gestion complète : commande, logistique, dédouanement. Simplicité totale pour vous.</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <div class="service-title">Agent terrain</div>
+        <div class="service-desc">Présent physiquement à Guangzhou, nous visitons les usines, vérifions les produits et gérons vos relations fournisseurs comme si vous y étiez.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POURQUOI -->
+<section id="pourquoi">
+  <div class="reveal">
+    <div class="section-label">Nos atouts</div>
+    <div class="section-title">Pourquoi DragonSource ?</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-item reveal">
+      <div class="why-number">01</div>
+      <div class="why-title">Prix direct usine</div>
+      <div class="why-desc">Accès aux vrais prix fabricant, sans intermédiaire. Économisez 30 à 60% vs les plateformes classiques.</div>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-number">02</div>
+      <div class="why-title">Présence physique</div>
+      <div class="why-desc">Nous sommes sur place à Guangzhou. Visite d'usine, vérification qualité, négociation en face à face.</div>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-number">03</div>
+      <div class="why-title">Marché européen</div>
+      <div class="why-desc">Connaissance des normes CE, des douanes européennes et des attentes du marché. Zéro mauvaise surprise.</div>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-number">04</div>
+      <div class="why-title">Réactivité totale</div>
+      <div class="why-desc">Disponible sur WhatsApp, Telegram et WeChat. Réponse rapide, suivi en temps réel de vos commandes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<div id="produits">
+  <div class="inner">
+    <div class="reveal">
+      <div class="section-label">Notre catalogue</div>
+      <div class="section-title">Nos Catégories</div>
+      <div class="section-divider"></div>
+    </div>
+    <div class="produits-grid">
+      <div class="produit-card reveal">
+        <div class="produit-emoji">📱</div>
+        <div class="produit-title">Électronique & Tech</div>
+        <div class="produit-desc">Smartphones, accessoires, gadgets, audio, domotique et plus encore.</div>
+      </div>
+      <div class="produit-card reveal">
+        <div class="produit-emoji">👗</div>
+        <div class="produit-title">Textile & Mode</div>
+        <div class="produit-desc">Vêtements, accessoires mode, sacs, chaussures. Toutes tailles, tous styles.</div>
+      </div>
+      <div class="produit-card reveal">
+        <div class="produit-emoji">🏮</div>
+        <div class="produit-title">Maison & Déco</div>
+        <div class="produit-desc">Mobilier, décoration, cuisine, luminaires et objets du quotidien.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Travaillons ensemble</div>
+    <div class="section-title">Contact</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-tagline">Vous avez un projet ?<br><span>Parlons-en.</span></div>
+      <div class="contact-sub">Que vous soyez e-commerçant, boutique physique ou entrepreneur, nous avons la solution pour sourcer vos produits depuis la Chine.</div>
+      <a href="mailto:contact.dragonsource@gmail.com" class="btn-primary">Demander un devis</a>
+    </div>
+    <div class="contact-info-block reveal">
+      <a class="contact-item" href="tel:+32491503938">
+        <div class="contact-item-icon">📞</div>
+        <div>
+          <div class="contact-item-label">WhatsApp / Téléphone</div>
+          <div class="contact-item-value">+32 491 50 39 38</div>
+        </div>
+      </a>
+      <a class="contact-item" href="mailto:contact.dragonsource@gmail.com">
+        <div class="contact-item-icon">✉️</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">contact.dragonsource@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-item" href="https://tiktok.com/@dragonsource" target="_blank">
+        <div class="contact-item-icon">🎵</div>
+        <div>
+          <div class="contact-item-label">TikTok</div>
+          <div class="contact-item-value">@dragonsource</div>
+        </div>
+      </a>
+      <a class="contact-item" href="https://t.me/dragonsource1" target="_blank">
+        <div class="contact-item-icon">✈️</div>
+        <div>
+          <div class="contact-item-label">Telegram</div>
+          <div class="contact-item-value">@dragonsource1</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DRAGON<span>SOURCE</span></div>
+  <div class="footer-copy">© 2025 DragonSource — Tous droits réservés</div>
+  <div class="footer-char">龍</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
